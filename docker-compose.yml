@@ -13,7 +13,7 @@ services:
       - 80:80
     restart: always
     volumes:
-      - $PWD/log/http.log:/var/log/httpecho/http.log
+      - $PWD/log:/var/log/httpecho
 
   https_server:
     build: .
@@ -26,4 +26,4 @@ services:
     restart: always
     volumes:
       - $PWD/etc:/etc/httpecho:ro
-      - $PWD/log/https.log:/var/log/httpecho/https.log
+      - $PWD/log:/var/log/httpecho
