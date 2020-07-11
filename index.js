@@ -46,6 +46,7 @@ const reqListener = async (req, resp) => {
   data = data.trim()
 
   const lines = [
+    `[${(new Date()).toISOString()}]`,
     'FROM ' + req.socket.remoteAddress,
     `${req.method} ${req.url} HTTP/${req.httpVersion}`,
     ...Object
@@ -123,7 +124,11 @@ program
         .on('error', err => error('[!] ' + err.message))
         .listen(port, address, () => warn(`[-] ${proto} server listening on ${address}:${port}`))
     })
+
+    process.exit()
   })
   .parseAsync(process.argv)
-  .catch(err => error(err) || 1)
-  .then(process.exit)
+  .catch(err => {
+    error(err)
+    process.exit(1)
+  })
