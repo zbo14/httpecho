@@ -1,0 +1,29 @@
+version: '3.7'
+
+networks:
+  httpecho:
+    name: httpecho
+
+services:
+  http_server:
+    build: .
+    networks:
+      - httpecho
+    ports:
+      - 80:80
+    restart: always
+    volumes:
+      - $PWD/log/http.log:/var/log/httpecho/http.log
+
+  https_server:
+    build: .
+    environment:
+      - secure=true
+    networks:
+      - httpecho
+    ports:
+      - 443:443
+    restart: always
+    volumes:
+      - $PWD/etc:/etc/httpecho:ro
+      - $PWD/log/https.log:/var/log/httpecho/https.log

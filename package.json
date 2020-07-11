@@ -1,8 +1,12 @@
 {
   "name": "httpecho",
   "version": "0.0.0",
-  "description": "",
+  "description": "Simple HTTP/S echo server you can run on the command line or with Docker",
   "bin": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zbo14/httpecho"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
